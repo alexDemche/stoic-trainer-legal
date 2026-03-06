@@ -6,13 +6,12 @@
     <title>Stoic Trainer - Legal</title>
     <style>
         :root {
-            /* Нова палітра з твого React Native додатку */
             --bg-color: #121212;
             --surface-color: #1E1E1E;
             --text-color: #E1E1E1;
             --text-secondary: rgba(255, 255, 255, 0.4);
             --accent-color: #E0C9A6;
-            --header-bg: rgba(18, 18, 18, 0.9); /* backgroundTransparent */
+            --header-bg: rgba(18, 18, 18, 0.9);
             --border-color: rgba(255, 255, 255, 0.08);
         }
 
@@ -23,7 +22,7 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            scroll-behavior: smooth; /* Плавний скрол для анкорів */
+            scroll-behavior: smooth;
         }
 
         header {
@@ -179,17 +178,14 @@
     </style>
     <script>
         function showLang(lang) {
-            // Приховуємо всі контенти та навігації
             document.getElementById('content-en').classList.add('hidden');
             document.getElementById('content-ua').classList.add('hidden');
             document.getElementById('nav-en').classList.add('hidden');
             document.getElementById('nav-ua').classList.add('hidden');
 
-            // Показуємо вибрану мову
             document.getElementById('content-' + lang).classList.remove('hidden');
             document.getElementById('nav-' + lang).classList.remove('hidden');
 
-            // Оновлюємо активні кнопки
             document.getElementById('btn-en').classList.remove('active');
             document.getElementById('btn-ua').classList.remove('active');
             document.getElementById('btn-' + lang).classList.add('active');
@@ -199,7 +195,7 @@
 <body>
 
     <header>
-        <img src="./assets/images/icon-512x512.png" alt="Stoic Trainer Icon" class="app-icon">
+        <img src="./icon-512x512.png" alt="Stoic Trainer Icon" class="app-icon">
         <h1>Stoic Trainer</h1>
         
         <div id="nav-en" class="nav-links">
