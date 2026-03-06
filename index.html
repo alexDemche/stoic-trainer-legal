@@ -6,10 +6,14 @@
     <title>Stoic Trainer - Legal</title>
     <style>
         :root {
-            --bg-color: #050505;
-            --text-color: rgba(255, 255, 255, 0.8);
+            /* Нова палітра з твого React Native додатку */
+            --bg-color: #121212;
+            --surface-color: #1E1E1E;
+            --text-color: #E1E1E1;
+            --text-secondary: rgba(255, 255, 255, 0.4);
             --accent-color: #E0C9A6;
-            --header-bg: rgba(255, 255, 255, 0.05);
+            --header-bg: rgba(18, 18, 18, 0.9); /* backgroundTransparent */
+            --border-color: rgba(255, 255, 255, 0.08);
         }
 
         body {
@@ -19,19 +23,29 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            scroll-behavior: smooth; /* Плавний скрол для анкорів */
         }
 
         header {
-            background-color: var(--header-bg);
-            padding: 2rem 1rem;
+            background-color: var(--bg-color);
+            padding: 3rem 1rem 2rem;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .app-icon {
+            width: 80px; 
+            height: 80px; 
+            border-radius: 18px; 
+            margin-bottom: 20px; 
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         h1 {
             color: #FFF;
             font-weight: 200;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             text-transform: uppercase;
             margin: 0;
             font-size: 2rem;
@@ -44,7 +58,7 @@
             text-transform: uppercase;
             margin-top: 3rem;
             margin-bottom: 1rem;
-            border-bottom: 1px solid rgba(224, 201, 166, 0.3);
+            border-bottom: 1px solid rgba(224, 201, 166, 0.2);
             padding-bottom: 0.5rem;
             display: inline-block;
         }
@@ -55,10 +69,27 @@
             margin-top: 1.5rem;
         }
 
+        p, li {
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        strong {
+            color: #FFF;
+        }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
+        }
+
+        section {
+            background-color: var(--surface-color);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
         }
 
         ul {
@@ -85,64 +116,114 @@
             text-align: center;
             padding: 2rem;
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.3);
-            margin-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            border-top: 1px solid var(--border-color);
         }
 
         .nav-links {
             margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
         
         .nav-links a {
-            margin: 0 10px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            text-decoration: none;
         }
         
         .lang-switch {
             margin-bottom: 2rem;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
         }
+
         .lang-btn {
-            background: none;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 5px 15px;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 20px;
+            border-radius: 20px;
             cursor: pointer;
-            margin: 0 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
-        .hidden { display: none; }
+
+        .lang-btn.active {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            background: rgba(224, 201, 166, 0.1);
+        }
+
+        .hidden { display: none !important; }
+
+        .developer-mark {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-align: center;
+        }
     </style>
     <script>
         function showLang(lang) {
+            // Приховуємо всі контенти та навігації
             document.getElementById('content-en').classList.add('hidden');
             document.getElementById('content-ua').classList.add('hidden');
+            document.getElementById('nav-en').classList.add('hidden');
+            document.getElementById('nav-ua').classList.add('hidden');
+
+            // Показуємо вибрану мову
             document.getElementById('content-' + lang).classList.remove('hidden');
+            document.getElementById('nav-' + lang).classList.remove('hidden');
+
+            // Оновлюємо активні кнопки
+            document.getElementById('btn-en').classList.remove('active');
+            document.getElementById('btn-ua').classList.remove('active');
+            document.getElementById('btn-' + lang).classList.add('active');
         }
     </script>
 </head>
 <body>
 
     <header>
+        <img src="./assets/images/icon-512x512.png" alt="Stoic Trainer Icon" class="app-icon">
         <h1>Stoic Trainer</h1>
-        <div class="nav-links">
-            <a href="#privacy">Privacy</a>
-            <a href="#terms">Terms</a>
-            <a href="mailto:stoic.labs.dev@gmail.com">Contact</a>
+        
+        <div id="nav-en" class="nav-links">
+            <a href="#privacy-en">Privacy</a>
+            <a href="#terms-en">Terms</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <div id="nav-ua" class="nav-links hidden">
+            <a href="#privacy-ua">Політика</a>
+            <a href="#terms-ua">Умови</a>
+            <a href="#contact">Контакти</a>
         </div>
     </header>
 
     <div class="container">
         
         <div class="lang-switch">
-            <button class="lang-btn" onclick="showLang('en')">English</button>
-            <button class="lang-btn" onclick="showLang('ua')">Українська</button>
+            <button id="btn-en" class="lang-btn active" onclick="showLang('en')">English</button>
+            <button id="btn-ua" class="lang-btn" onclick="showLang('ua')">Українська</button>
         </div>
 
         <div id="content-en">
-            <section id="privacy">
+            <section id="privacy-en">
                 <h2>Privacy Policy</h2>
                 <p><strong>Effective Date:</strong> January 1, 2026</p>
 
@@ -152,8 +233,8 @@
                     <li><strong>Name or Nickname:</strong> To address you within the app.</li>
                     <li><strong>Date of Birth (Optional):</strong> Used strictly for the "Memento Mori" feature (life weeks visualization). You can provide this at your discretion within the app.</li>
                     <li><strong>Game Progress:</strong> Level, rank, wisdom points, practice statistics.</li>
-                    <li><strong>Authentication Data (Google/Apple/Telegram):</strong> If you choose to log in via Google or Telegram, we receive your basic account data (such as email and a unique identifier) to securely back up your progress and enable cross-device synchronization.</li>
-                    <li><strong>Technical Data:</strong> Device ID for account synchronization (especially if using guest mode).</li>
+                    <li><strong>Authentication Data (Google/Apple/Telegram):</strong> If you choose to log in via Google, Apple, or Telegram, we receive your basic account data (such as email, name, and a unique identifier) to securely back up your progress and enable cross-device synchronization.</li>
+                    <li><strong>Technical Data:</strong> Device ID for account synchronization.</li>
                     <li><strong>Third-Party Links:</strong> The app contains links to external resources. We do not collect data on your clicks, but external sites may use their own cookies.</li>
                     <li><strong>Bluetooth Connectivity:</strong> To discover, connect, and sync data with your "Stoic Stone" hardware device.</li>
                     <li><strong>Location Access:</strong> On certain Android versions, location access is technically required to perform Bluetooth Low Energy (BLE) scanning. We use this strictly for device discovery. <strong>We do not track, store, or share your physical location.</strong></li>
@@ -177,22 +258,25 @@
                 <p><em>Path: Profile -> Delete All Data & Profile.</em></p>
                 <p>If you cannot access the app, you can request data deletion by emailing us at stoic.labs.dev@gmail.com.</p>
                 <p>This action is irreversible.</p>
-                <br><hr><code>Stoic Trainer is developed and operated by Oleksii Demchenko.</code>
+                
+                <div class="developer-mark">
+                    Stoic Trainer is developed and operated by Oleksii Demchenko.
+                </div>
             </section>
 
-            <section id="terms">
+            <section id="terms-en">
                 <h2>Terms of Service</h2>
 
                 <h3>1. GENERAL PROVISIONS</h3>
                 <p>By downloading and using the Stoic Trainer app, you agree to these Terms. The app is provided "as is," without any warranties.</p>
 
                 <h3>2. MEDICAL DISCLAIMER</h3>
-                <p>Stoic Trainer is a tool for self-development and mental training. The materials in the app are not medical advice, diagnosis, or treatment. When performing breathing exercises or physical practices (Gym), you are fully responsible for your health. If you feel discomfort, stop the practice and consult a doctor.</p>
+                <p>Stoic Trainer is a tool for self-development and mental training. The materials in the app are not medical advice, diagnosis, or treatment. When performing breathing exercises or physical practices, you are fully responsible for your health. If you feel discomfort, stop the practice and consult a doctor.</p>
 
                 <h3>3. INTELLECTUAL PROPERTY</h3>
                 <p>All texts, audio, design, and code of the app are the property of Stoic Trainer. Copying, modifying, or distributing content without our permission is prohibited.</p>
 
-                <h3>5. EXTERNAL CONTENT (SYMPATHEIA)</h3>
+                <h3>4. EXTERNAL CONTENT (SYMPATHEIA)</h3>
                 <p>The "World Herald" section provides curated links to third-party media. Stoic Trainer does not control, endorse, or assume responsibility for any third-party content or its accuracy.</p>
 
                 <h3>5. AI-GENERATED CONTENT & MEDIA</h3>
@@ -204,7 +288,7 @@
         </div>
 
         <div id="content-ua" class="hidden">
-            <section>
+            <section id="privacy-ua">
                 <h2>Політика Конфіденційності</h2>
                 <p><strong>Дата набрання чинності:</strong> 1 Січня 2026</p>
 
@@ -212,10 +296,10 @@
                 <p>Для коректної роботи додатка та персоналізації досвіду ми можемо збирати наступні дані:</p>
                 <ul>
                     <li><strong>Ім'я або Нікнейм:</strong> Щоб звертатися до вас у додатку.</li>
-                    <li><strong>Дані авторизації (Google/Apple/Telegram):</strong> Якщо ви обираєте вхід через Google або Telegram, ми отримуємо базові дані (ваш email та унікальний ідентифікатор) для створення безпечного хмарного бекапу та синхронізації прогресу.</li>
+                    <li><strong>Дані авторизації (Google/Apple/Telegram):</strong> Якщо ви обираєте вхід через Google, Apple або Telegram, ми отримуємо базові дані (ваш email, ім'я та унікальний ідентифікатор) для створення безпечного хмарного бекапу та синхронізації прогресу.</li>
                     <li><strong>Дата народження (Опціонально):</strong> Використовується виключно для функції "Memento Mori" (візуалізація часу життя). Ви можете вказати її за власним бажанням у додатку.</li>
                     <li><strong>Ігровий прогрес:</strong> Рівень, звання, бали мудрості, статистика практик.</li>
-                    <li><strong>Технічні дані:</strong> ID пристрою для синхронізації (якщо ви використовуєте гостьовий режим).</li>
+                    <li><strong>Технічні дані:</strong> ID пристрою для синхронізації.</li>
                     <li><strong>Посилання на сторонні ресурси:</strong> Додаток містить посилання на зовнішні сайти. Ми не збираємо дані про ваші переходи, проте сторонні сайти можуть використовувати власні cookies.</li>
                     <li><strong>Bluetooth-з’єднання:</strong> Для пошуку, підключення та синхронізації даних із вашим пристроєм "Stoic Stone".</li>
                     <li><strong>Доступ до геолокації:</strong> На деяких версіях Android доступ до локації є технічною вимогою для сканування пристроїв Bluetooth (BLE). Ми використовуємо це виключно для пошуку пристрою. <strong>Ми не відстежуємо, не зберігаємо та не передаємо дані про ваше фізичне місцезнаходження.</strong></li>
@@ -227,29 +311,31 @@
                 <ul>
                     <li>Відображення вашого профілю та статистики.</li>
                     <li>Синхронізації прогресу між пристроями.</li>
-                    <li>Покращення стабільності, моніторинг продуктивності та виправлення помилок за допомогою анонімних діагностичних звітів.</li>
+                    <li>Покращення стабільності, моніторинг продуктивності та виправлення помилок.</li>
                 </ul>
 
                 <h3>3. ЗБЕРІГАННЯ ТА БЕЗПЕКА</h3>
                 <p>Ми використовуємо захищені сервери для зберігання вашого прогресу. Ми не продаємо та не передаємо ваші особисті дані третім особам.</p>
-                <p>Ми можемо передавати анонімні технічні дані надійним стороннім аналітичним сервісам (таким як Google Firebase) виключно для підтримки та покращення роботи додатка.</p>
 
                 <h3>4. ВИДАЛЕННЯ АКАУНТУ</h3>
                 <p>Ви маєте право видалити свій акаунт та всі пов'язані з ним дані в будь-який момент через налаштування профілю.</p>
                 <p><em>Шлях: Профіль -> Видалити всі данні та профіль.</em></p>
                 <p>Якщо ви не маєте доступу до додатка, ви можете надіслати запит на видалення даних на нашу пошту: stoic.labs.dev@gmail.com.</p>
                 <p>Ця дія є незворотною.</p>
-                <br><hr><code>Stoic Trainer розроблений та підтримується Олексієм Демченко</code>
+                
+                <div class="developer-mark">
+                    Stoic Trainer розроблений та підтримується Олексієм Демченко.
+                </div>
             </section>
 
-            <section>
+            <section id="terms-ua">
                 <h2>Умови Використання</h2>
 
                 <h3>1. ЗАГАЛЬНІ ПОЛОЖЕННЯ</h3>
                 <p>Завантажуючи та використовуючи додаток Stoic Trainer, ви погоджуєтесь із цими Умовами. Додаток надається "як є" (as is), без будь-яких гарантій.</p>
 
                 <h3>2. МЕДИЧНА ВІДМОВА ВІД ВІДПОВІДАЛЬНОСТІ</h3>
-                <p>Stoic Trainer — це інструмент для саморозвитку та ментального тренування. Матеріали додатка не є медичними порадами, діагнозом чи лікуванням. Виконуючи дихальні вправи або фізичні практики (Gym), ви несете повну відповідальність за своє здоров'я. Якщо ви відчуваєте дискомфорт — припиніть практику та зверніться до лікаря.</p>
+                <p>Stoic Trainer — це інструмент для саморозвитку та ментального тренування. Матеріали додатка не є медичними порадами, діагнозом чи лікуванням. Виконуючи дихальні вправи або фізичні практики, ви несете повну відповідальність за своє здоров'я. Якщо ви відчуваєте дискомфорт — припиніть практику та зверніться до лікаря.</p>
 
                 <h3>3. ІНТЕЛЕКТУАЛЬНА ВЛАСНІСТЬ</h3>
                 <p>Усі тексти, аудіо, дизайн та код додатка є власністю Stoic Trainer. Заборонено копіювати, модифікувати або розповсюджувати контент без нашого дозволу.</p>
@@ -257,17 +343,17 @@
                 <h3>4. ЗОВНІШНІЙ КОНТЕНТ (SYMPATHEIA)</h3>
                 <p>Розділ "Світовий Вісник" надає посилання на сторонні медіа. Stoic Trainer не несе відповідальності за зміст, точність або доступність цих зовнішніх матеріалів.</p>
 
-                 <h3>5. КОНТЕНТ, ЗГЕНЕРОВАНИЙ ШІ, ТА МЕДІА</h3>
-                <p>Деякі аудіоматеріали (включаючи фонову музику та треки для медитації) можуть бути створені за допомогою технологій Штучного Інтелекту. Ці матеріали надаються виключно для цілей релаксації та фокусування. Використовуючи функцію "Аудіо Кімната", ви усвідомлюєте, що додаток завантажує дані з наших серверів, що може витрачати ваш мобільний інтернет-трафік.</p>
+                <h3>5. КОНТЕНТ, ЗГЕНЕРОВАНИЙ ШІ, ТА МЕДІА</h3>
+                <p>Деякі аудіоматеріали можуть бути створені за допомогою технологій Штучного Інтелекту. Ці матеріали надаються виключно для цілей релаксації. Використовуючи функцію "Аудіо Кімната", ви усвідомлюєте, що додаток завантажує дані з наших серверів, що може витрачати ваш інтернет-трафік.</p>
 
                 <h3>6. ПОВЕДІНКА КОРИСТУВАЧА</h3>
                 <p>Ми залишаємо за собою право заблокувати доступ користувачам, які намагаються зламати додаток, маніпулювати даними або порушують етичні норми спільноти.</p>
             </section>
         </div>
 
-        <section id="contact" style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
-            <h2>Contacts / Контакти</h2>
-            <p>Email: <a href="mailto:stoic.labs.dev@gmail.com">stoic.labs.dev@gmail.com</a></p>
+        <section id="contact" style="background: transparent; border: none; border-top: 1px solid var(--border-color); border-radius: 0; padding-top: 2rem; margin-top: 2rem;">
+            <h2 style="margin-top: 0;">Contacts / Контакти</h2>
+            <p style="color: var(--text-secondary);">Email: <a href="mailto:stoic.labs.dev@gmail.com">stoic.labs.dev@gmail.com</a></p>
         </section>
 
     </div>
