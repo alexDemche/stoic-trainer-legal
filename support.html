@@ -3,74 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stoic Trainer | Support</title>
+    <title>Stoic Trainer - Support</title>
     <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1E1E1E;
+            --text-color: #E1E1E1;
+            --text-secondary: rgba(255, 255, 255, 0.4);
+            --accent-color: #E0C9A6;
+            --header-bg: rgba(18, 18, 18, 0.9);
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
         body {
-            background-color: #121212;
-            color: #E0C9A6;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background-color: var(--bg-color);
+            padding: 3rem 1rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Якщо файл лежить у папці support, зміни шлях до іконки на ../icon-512x512.png */
+        .app-icon {
+            width: 80px; 
+            height: 80px; 
+            border-radius: 18px; 
+            margin-bottom: 20px; 
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #FFF;
+            font-weight: 200;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(224, 201, 166, 0.2);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        p {
+            color: var(--text-color);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        section {
+            background-color: var(--surface-color);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
             text-align: center;
         }
-        .container {
-            max-width: 400px;
-            width: 100%;
-            background: rgba(224, 201, 166, 0.05);
-            padding: 40px 20px;
-            border-radius: 24px;
-            border: 1px solid rgba(224, 201, 166, 0.2);
-        }
-        h1 {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #A0A0A0;
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 30px;
-        }
+
+        /* Стилі кнопок, адаптовані під твій дизайн */
         .btn {
             display: block;
-            background-color: #E0C9A6;
-            color: #121212;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
             text-decoration: none;
             padding: 16px;
             border-radius: 12px;
             font-weight: 700;
             font-size: 14px;
             letter-spacing: 0.5px;
-            margin-bottom: 12px;
-            transition: opacity 0.2s;
+            margin-bottom: 16px;
+            transition: all 0.2s ease;
         }
+
         .btn:hover {
-            opacity: 0.8;
+            opacity: 0.85;
+            transform: translateY(-2px);
+            text-decoration: none;
         }
+
         .btn-outline {
             background-color: transparent;
-            color: #E0C9A6;
-            border: 1px solid #E0C9A6;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
         }
+
+        .btn-outline:hover {
+            background-color: rgba(224, 201, 166, 0.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .lang-switch {
+            margin-bottom: 2rem;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            background: rgba(224, 201, 166, 0.1);
+        }
+
+        .hidden { display: none !important; }
     </style>
+    <script>
+        function showLang(lang) {
+            document.getElementById('content-en').classList.add('hidden');
+            document.getElementById('content-ua').classList.add('hidden');
+            document.getElementById('nav-en').classList.add('hidden');
+            document.getElementById('nav-ua').classList.add('hidden');
+
+            document.getElementById('content-' + lang).classList.remove('hidden');
+            document.getElementById('nav-' + lang).classList.remove('hidden');
+
+            document.getElementById('btn-en').classList.remove('active');
+            document.getElementById('btn-ua').classList.remove('active');
+            document.getElementById('btn-' + lang).classList.add('active');
+        }
+    </script>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Support</h1>
-        <p>Choose how you would like to contact us for technical support or feedback.</p>
-
-        <a href="https://t.me/YOUR_TELEGRAM_COMMUNITY_LINK" class="btn" target="_blank">Telegram Community</a>
+    <header>
+        <img src="./icon-512x512.png" alt="Stoic Trainer Icon" class="app-icon">
+        <h1>Stoic Trainer</h1>
         
-        <a href="mailto:alexeyydemchenko@gmail.com?subject=Stoic Trainer Support" class="btn btn-outline">Email Support</a>
+        <div id="nav-en" class="nav-links">
+            <a href="index.html#privacy-en">Privacy</a>
+            <a href="index.html#terms-en">Terms</a>
+            <a href="#" style="color: var(--accent-color);">Support</a>
+        </div>
+
+        <div id="nav-ua" class="nav-links hidden">
+            <a href="index.html#privacy-ua">Політика</a>
+            <a href="index.html#terms-ua">Умови</a>
+            <a href="#" style="color: var(--accent-color);">Підтримка</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="lang-switch">
+            <button id="btn-en" class="lang-btn active" onclick="showLang('en')">English</button>
+            <button id="btn-ua" class="lang-btn" onclick="showLang('ua')">Українська</button>
+        </div>
+
+        <div id="content-en">
+            <section>
+                <h2>Support & Contact</h2>
+                <p>Choose the most convenient way to reach out for technical support, feedback, or community discussions.</p>
+
+                <a href="https://t.me/+ZTbhCrDOwPE1MjEy" class="btn" target="_blank">Join Telegram Community</a>
+                
+                <a href="https://t.me/c/3357612565/3" class="btn btn-outline" target="_blank">Tech Support Topic (Telegram)</a>
+                
+                <a href="mailto:stoic.labs.dev@gmail.com?subject=Stoic Trainer Support" class="btn btn-outline">Email Support</a>
+            </section>
+        </div>
+
+        <div id="content-ua" class="hidden">
+            <section>
+                <h2>Підтримка та Контакти</h2>
+                <p>Оберіть зручний для вас спосіб зв'язку для вирішення технічних питань або пропозицій.</p>
+
+                <a href="https://t.me/+ZTbhCrDOwPE1MjEy" class="btn" target="_blank">Спільнота в Telegram</a>
+                
+                <a href="https://t.me/c/3357612565/3" class="btn btn-outline" target="_blank">Технічна підтримка (Telegram)</a>
+                
+                <a href="mailto:stoic.labs.dev@gmail.com?subject=Stoic Trainer Support" class="btn btn-outline">Написати на Email</a>
+            </section>
+        </div>
+
     </div>
+
+    <footer>
+        &copy; 2026 Stoic Trainer. All rights reserved.
+    </footer>
 
 </body>
 </html>
